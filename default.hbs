@@ -23,66 +23,6 @@
             --background-color: {{@custom.site_background_color}}
         }
     </style>
-
-    {{!-- RTL Support for Arabic --}}
-    {{#match @site.locale "ar"}}
-    <style>
-        body {
-            direction: rtl;
-            text-align: right;
-        }
-        
-        /* Navigation adjustments */
-        .gh-navigation,
-        .gh-navigation-menu {
-            flex-direction: row-reverse;
-        }
-        
-        .gh-navigation-logo {
-            margin-right: 0;
-            margin-left: auto;
-        }
-        
-        /* Content alignment */
-        .gh-article-excerpt,
-        .gh-article-meta,
-        .gh-post-meta,
-        .gh-card-excerpt {
-            text-align: right;
-        }
-        
-        /* Social icons and author info */
-        .gh-author-social,
-        .gh-author-meta {
-            flex-direction: row-reverse;
-        }
-        
-        /* Post cards and lists */
-        .gh-card-link,
-        .gh-card-meta {
-            text-align: right;
-        }
-        
-        /* Flip padding and margins where needed */
-        .gh-article-tag {
-            margin-right: 0;
-            margin-left: 0.6rem;
-        }
-        
-        /* Footer adjustments */
-        .gh-footer-navigation {
-            flex-direction: row-reverse;
-        }
-        
-        /* Button and link adjustments */
-        .gh-card-link::after,
-        .gh-article-link::after {
-            margin-left: 0;
-            margin-right: 0.5rem;
-        }
-    </style>
-    {{/match}}
-
     <script>
         /* The script for calculating the color contrast has been taken from
         https://gomakethings.com/dynamically-changing-the-text-color-based-on-background-color-contrast-with-vanilla-js/ */
@@ -106,7 +46,7 @@
     {{ghost_head}}
 
 </head>
-<body class="{{body_class}} has-{{#match @custom.title_font "Elegant serif"}}serif{{else match @custom.title_font "Consistent mono"}}mono{{else}}sans{{/match}}-title has-{{#match @custom.body_font "Elegant serif"}}serif{{else}}sans{{/match}}-body">
+<body class="{{body_class}} has-{{#match @custom.title_font "Elegant serif"}}serif{{else match @custom.title_font "Consistent mono"}}mono{{else match @custom.title_font "Modern sans-serif"}}sans{{else}}montserrat-arabic{{/match}}-title has-{{#match @custom.body_font "Elegant serif"}}serif{{else match @custom.body_font "Modern sans-serif"}}sans{{else}}montserrat-arabic{{/match}}-body">
 
 <div class="gh-viewport">
     

@@ -68,9 +68,9 @@
         </div>
     </section>
     
-    {{!-- Display posts by Raji --}}
+    {{!-- Display posts by this author --}}
     <section class="gh-archive gh-inner">
-        <h2 class="gh-archive-title">Articles by Raji</h2>
+        <h2 class="gh-archive-title">{{t "Articles by {author}" author=name}}</h2>
     </section>
     
     {{> "components/post-list" feed="archive" postFeedStyle=@custom.post_feed_style showTitle=false showSidebar=@custom.show_publication_info_sidebar}}

@@ -1,35 +1,410 @@
-<footer class="gh-footer{{#match @custom.header_and_footer_color "Accent color"}} has-accent-color{{/match}} gh-outer">
+{{!-- Old footer commented out
+<footer class="gh-footer{{#match @custom.header_and_footer_color " Accent color"}} has-accent-color{{/match}} gh-outer">
     <div class="gh-footer-inner gh-inner">
 
         <div class="gh-footer-bar">
             <span class="gh-footer-logo is-title">
                 {{#if @site.logo}}
-                    <img src="{{@site.logo}}" alt="{{@site.title}}">
+                <img src="{{@site.logo}}" alt="{{@site.title}}">
                 {{else}}
-                    {{@site.title}}
+                {{@site.title}}
                 {{/if}}
             </span>
             <nav class="gh-footer-menu">
                 {{navigation type="secondary"}}
             </nav>
             <div class="gh-footer-copyright">
-                Powered by <a href="https://atabe.app/" target="_blank" rel="noopener">Atabe</a>
+                {{t "Powered by"}} <a href="https://atabe.app/" target="_blank" rel="noopener">Atabe</a>
             </div>
         </div>
 
         {{#if @site.members_enabled}}
-            {{#unless @member}}
-                <section class="gh-footer-signup">
-                    <h2 class="gh-footer-signup-header is-title">
-                        {{#if @custom.signup_heading}}{{@custom.signup_heading}}{{else}}{{@site.title}}{{/if}}
-                    </h2>
-                    <p class="gh-footer-signup-subhead is-body">
-                        {{#if @custom.signup_subheading}}{{@custom.signup_subheading}}{{else}}{{@site.description}}{{/if}}
-                    </p>
-                    {{> "email-subscription" email_field_id="footer-email"}}
-                </section>
-            {{/unless}}
+        {{#unless @member}}
+        <section class="gh-footer-signup">
+            <h2 class="gh-footer-signup-header is-title">
+                {{#if @custom.signup_heading}}{{@custom.signup_heading}}{{else}}{{@site.title}}{{/if}}
+            </h2>
+            <p class="gh-footer-signup-subhead is-body">
+                {{#if @custom.signup_subheading}}{{@custom.signup_subheading}}{{else}}{{@site.description}}{{/if}}
+            </p>
+            {{> "email-subscription" email_field_id="footer-email"}}
+        </section>
+        {{/unless}}
         {{/if}}
 
     </div>
+</footer> --}}
+
+
+{{!-- New Atabe Footer --}}
+<footer class="atabe-footer">
+    <div class="atabe-footer-inner">
+        {{!-- Mobile Layout --}}
+        <div class="atabe-footer-mobile">
+            <div class="atabe-footer-logo-section">
+                {{> "components/atabe-logo"}}
+                <div class="atabe-footer-social">
+                    <a href="https://www.linkedin.com/company/atabe-%D8%B9%D8%AA%D8%A8%D8%A9/" aria-label="LinkedIn"
+                        class="atabe-social-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                    </a>
+                    <a href="https://www.instagram.com/atabeapp/" aria-label="Instagram" class="atabe-social-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </a>
+                    <a href="https://wa.me/963968443487" aria-label="WhatsApp" class="atabe-social-link">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M20.52 3.48A11.78 11.78 0 0 0 12.01 0C5.39 0 .03 5.36.03 11.98c0 2.11.55 4.18 1.6 6.01L0 24l6.19-1.61a11.95 11.95 0 0 0 5.82 1.5h.01c6.62 0 11.98-5.36 11.98-11.98 0-3.2-1.25-6.22-3.48-8.43ZM12.01 21.3h-.01c-1.88 0-3.72-.5-5.32-1.46l-.38-.22-3.67.95.98-3.58-.25-.37A9.77 9.77 0 0 1 2.24 12C2.24 6.62 6.63 2.24 12 2.24c2.61 0 5.06 1.02 6.91 2.88a9.7 9.7 0 0 1 2.85 6.9c0 5.38-4.39 9.28-9.75 9.28Zm5.38-7.37c-.29-.14-1.73-.86-2-.96-.27-.1-.46-.14-.65.14-.19.29-.75.96-.92 1.16-.17.19-.34.22-.63.08-.29-.14-1.23-.45-2.34-1.44-.86-.76-1.44-1.7-1.61-1.99-.17-.29-.02-.45.12-.59.12-.12.29-.31.43-.46.14-.15.19-.24.29-.41.1-.19.05-.36-.02-.5-.07-.14-.65-1.56-.9-2.14-.24-.58-.49-.5-.65-.5-.17 0-.36-.02-.55-.02-.19 0-.5.07-.76.36-.26.29-1 1-1 2.43s1.03 2.82 1.17 3.01c.14.19 2.03 3.1 4.93 4.35.69.3 1.23.48 1.65.62.69.22 1.32.19 1.82.12.55-.08 1.73-.71 1.98-1.4.24-.69.24-1.27.17-1.4-.07-.12-.26-.19-.55-.33Z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <hr class="atabe-footer-divider" />
+            <h2 class="atabe-footer-title">{{t "Popular searches"}}</h2>
+            <div class="atabe-footer-links-grid" id="atabe-footer-links-mobile"></div>
+            <hr class="atabe-footer-divider" />
+            <div class="atabe-footer-bottom-links">
+                {{navigation type="secondary"}}
+            </div>
+        </div>
+
+        {{!-- Desktop Layout --}}
+        <div class="atabe-footer-desktop">
+            <div class="atabe-footer-grid">
+                <div class="atabe-footer-logo-column">
+                    {{> "components/atabe-logo"}}
+                    <div class="atabe-footer-social">
+                        <a href="https://www.linkedin.com/company/atabe-%D8%B9%D8%AA%D8%A8%D8%A9/" aria-label="LinkedIn"
+                            class="atabe-social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/atabeapp/" aria-label="Instagram" class="atabe-social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/963968443487" aria-label="WhatsApp" class="atabe-social-link">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M20.52 3.48A11.78 11.78 0 0 0 12.01 0C5.39 0 .03 5.36.03 11.98c0 2.11.55 4.18 1.6 6.01L0 24l6.19-1.61a11.95 11.95 0 0 0 5.82 1.5h.01c6.62 0 11.98-5.36 11.98-11.98 0-3.2-1.25-6.22-3.48-8.43ZM12.01 21.3h-.01c-1.88 0-3.72-.5-5.32-1.46l-.38-.22-3.67.95.98-3.58-.25-.37A9.77 9.77 0 0 1 2.24 12C2.24 6.62 6.63 2.24 12 2.24c2.61 0 5.06 1.02 6.91 2.88a9.7 9.7 0 0 1 2.85 6.9c0 5.38-4.39 9.28-9.75 9.28Zm5.38-7.37c-.29-.14-1.73-.86-2-.96-.27-.1-.46-.14-.65.14-.19.29-.75.96-.92 1.16-.17.19-.34.22-.63.08-.29-.14-1.23-.45-2.34-1.44-.86-.76-1.44-1.7-1.61-1.99-.17-.29-.02-.45.12-.59.12-.12.29-.31.43-.46.14-.15.19-.24.29-.41.1-.19.05-.36-.02-.5-.07-.14-.65-1.56-.9-2.14-.24-.58-.49-.5-.65-.5-.17 0-.36-.02-.55-.02-.19 0-.5.07-.76.36-.26.29-1 1-1 2.43s1.03 2.82 1.17 3.01c.14.19 2.03 3.1 4.93 4.35.69.3 1.23.48 1.65.62.69.22 1.32.19 1.82.12.55-.08 1.73-.71 1.98-1.4.24-.69.24-1.27.17-1.4-.07-.12-.26-.19-.55-.33Z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="atabe-footer-content-column">
+                    <h2 class="atabe-footer-title">{{t "Popular searches"}}</h2>
+                    <div class="atabe-footer-links-grid" id="atabe-footer-links-desktop"></div>
+                </div>
+            </div>
+            <div class="atabe-footer-bottom">
+                {{navigation type="secondary"}}
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .atabe-footer {
+            background-color: #0B66FF;
+            color: white;
+            margin-top: 64px;
+            padding: 40px 16px;
+        }
+
+        .atabe-footer-inner {
+            max-width: 1320px;
+            margin: 0 auto;
+        }
+
+        .atabe-footer-logo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .atabe-logo {
+            width: 112px;
+            height: auto;
+            color: white;
+            display: block;
+        }
+
+        .atabe-footer-social {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .atabe-social-link {
+            color: white;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+
+        .atabe-social-link:hover {
+            opacity: 1;
+        }
+
+        .atabe-footer-divider {
+            border-color: rgba(255, 255, 255, 0.5);
+            margin: 24px 0;
+        }
+
+        .atabe-footer-title {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            margin-bottom: 16px;
+            text-align: start;
+        }
+
+        .atabe-footer-links-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px 24px;
+        }
+
+        .atabe-footer-links-column {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .atabe-footer-link {
+            font-size: 14px;
+            line-height: 1.6;
+            opacity: 0.95;
+            transition: opacity 0.2s;
+            text-decoration: none;
+            color: white;
+        }
+
+        .atabe-footer-link:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .atabe-footer-bottom-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            text-align: start;
+        }
+
+        .atabe-footer-bottom-links nav {
+            display: contents;
+        }
+
+        .atabe-footer-bottom-links .nav {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .atabe-footer-bottom-links .nav li {
+            margin: 0;
+        }
+
+        .atabe-footer-bottom-links .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 4px 0;
+            display: block;
+        }
+
+        .atabe-footer-bottom-links .nav a:hover {
+            text-decoration: underline;
+        }
+
+        .atabe-footer-bottom-link {
+            color: white;
+            text-decoration: none;
+            padding: 4px 0;
+        }
+
+        .atabe-footer-bottom-link:hover {
+            text-decoration: underline;
+        }
+
+        .atabe-footer-mobile {
+            display: block;
+        }
+
+        .atabe-footer-desktop {
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .atabe-footer-mobile {
+                display: none;
+            }
+
+            .atabe-footer-desktop {
+                display: block;
+            }
+
+            .atabe-footer {
+                padding: 56px 16px;
+            }
+
+            .atabe-logo {
+                width: 224px;
+            }
+
+            .atabe-footer-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 24px;
+                margin-bottom: 24px;
+            }
+
+            .atabe-footer-logo-column {
+                grid-row: span 2;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+                gap: 8px;
+                min-height: 260px;
+                position: relative;
+                top: 48px;
+            }
+
+            .atabe-footer-content-column {
+                grid-column: 2 / span 3;
+            }
+
+            .atabe-footer-content-column .atabe-footer-title {
+                font-size: 20px;
+                margin-bottom: 16px;
+            }
+
+            .atabe-footer-content-column .atabe-footer-links-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 24px;
+            }
+
+            .atabe-footer-bottom {
+                display: grid;
+                justify-content: center;
+                gap: 24px;
+            }
+
+
+            .atabe-footer-bottom .nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 24px;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+
+            .atabe-footer-bottom .nav li {
+                margin: 0;
+            }
+
+            .atabe-footer-bottom .nav a {
+                color: white;
+                text-decoration: none;
+                font-size: 18px;
+                font-weight: 600;
+            }
+
+            .atabe-footer-bottom .nav a:hover {
+                text-decoration: underline;
+            }
+
+            .atabe-footer-bottom-link {
+                font-size: 18px;
+            }
+        }
+
+        [dir="rtl"] .atabe-footer-links-grid,
+        [dir="rtl"] .atabe-footer-bottom-links,
+        [dir="rtl"] .atabe-footer-title {
+            text-align: right;
+        }
+
+        [dir="rtl"] .atabe-footer-logo-section {
+            align-items: flex-start;
+        }
+    </style>
+
+    <script>
+        (function () {
+            const API_URL = 'https://api.atabe.app/api/v1/properties/most-common/searches';
+            const isRTL = document.documentElement.dir === 'rtl' || document.documentElement.lang === 'ar';
+
+            function renderLinks(container, searches) {
+                if (!searches || searches.length === 0) return;
+
+                const mainCols = [];
+                const mainColsData = [];
+
+                // Group searches into arrays of max 5 items
+                for (let i = 0; i < Math.min(searches.length, 15); i += 5) {
+                    const columnSearches = searches.slice(i, i + 5);
+                    const columnItems = columnSearches.map(search => {
+                        if (isRTL) {
+                            return search.arTitle || search.enTitle || '';
+                        } else {
+                            return search.enTitle || search.arTitle || '';
+                        }
+                    });
+                    mainCols.push(columnItems);
+                    mainColsData.push(columnSearches);
+                }
+
+                // Render columns
+                mainCols.forEach((column, colIndex) => {
+                    const columnDiv = document.createElement('div');
+                    columnDiv.className = 'atabe-footer-links-column';
+
+                    column.forEach((item, itemIndex) => {
+                        const link = document.createElement('a');
+                        const searchItem = mainColsData[colIndex][itemIndex];
+                        link.href = searchItem ? 'https://atabe.app/' + searchItem.query : '#';
+                        link.className = 'atabe-footer-link';
+                        link.textContent = item;
+                        columnDiv.appendChild(link);
+                    });
+
+                    container.appendChild(columnDiv);
+                });
+            }
+
+            // Fetch and render for mobile
+            const mobileContainer = document.getElementById('atabe-footer-links-mobile');
+            const desktopContainer = document.getElementById('atabe-footer-links-desktop');
+
+            if (mobileContainer || desktopContainer) {
+                fetch(API_URL)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (mobileContainer) renderLinks(mobileContainer, data);
+                        if (desktopContainer) renderLinks(desktopContainer, data);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching footer links:', error);
+                    });
+            }
+        })();
+    </script>
 </footer>
