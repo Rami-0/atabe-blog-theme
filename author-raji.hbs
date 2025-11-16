@@ -1,0 +1,79 @@
+{{!< default}}
+{{!-- Custom author page for Raji --}}
+
+<main class="gh-main gh-outer">
+
+    <section class="gh-archive{{#if @custom.show_publication_info_sidebar}} has-sidebar{{/if}} gh-inner">
+        <div class="gh-archive-inner">
+            <div class="gh-archive-wrapper">
+                <h1 class="gh-article-title is-title">
+                    {{#if website}}
+                        <a class="gh-author-social-link" href="{{website}}" target="_blank" rel="noopener">{{name}}</a>
+                    {{else}}
+                        {{name}}
+                    {{/if}}
+                </h1>
+                
+                <div class="gh-article-excerpt">
+                    {{#if bio}}
+                        {{{bio}}}
+                    {{else}}
+                        <p>✨ <em>راجي في مكان ما بين "العمل على تحفة فنية" و "نسيت ملء هذا القسم"...</em></p>
+                        <p>النبذة المثالية لا تزال قيد المراجعة التصميمية. الحالة الراهنة: عالقة في حلقة لا نهائية من "مجرد تعديل أخير واحد". 🎨</p>
+                        <p><strong>حقيقة ممتعة:</strong> غياب النبذة هنا هو في الواقع اختيار تصميمي بسيط. القليل أفضل، أليس كذلك؟ 😄</p>
+                    {{/if}}
+                </div>
+                
+                <footer class="gh-author-meta">
+                    <div class="gh-author-social">
+                        {{#if twitter}}
+                            <a class="gh-author-social-link" href="{{social_url type="twitter"}}" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
+                        {{/if}}
+                        {{#if facebook}}
+                            <a class="gh-author-social-link" href="{{social_url type="facebook"}}" target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
+                        {{/if}}
+                        {{#if linkedin}}
+                            <a class="gh-author-social-link" href="{{social_url type="linkedin"}}" target="_blank" rel="noopener">{{> "icons/linkedin"}}</a>
+                        {{/if}}
+                        {{#if bluesky}}
+                            <a class="gh-author-social-link" href="{{social_url type="bluesky"}}" target="_blank" rel="noopener">{{> "icons/bluesky"}}</a>
+                        {{/if}}
+                        {{#if threads}}
+                            <a class="gh-author-social-link" href="{{social_url type="threads"}}" target="_blank" rel="noopener">{{> "icons/threads"}}</a>
+                        {{/if}}
+                        {{#if mastodon}}
+                            <a class="gh-author-social-link" href="{{social_url type="mastodon"}}" target="_blank" rel="noopener">{{> "icons/mastodon"}}</a>
+                        {{/if}}
+                        {{#if tiktok}}
+                            <a class="gh-author-social-link" href="{{social_url type="tiktok"}}" target="_blank" rel="noopener">{{> "icons/tiktok"}}</a>
+                        {{/if}}
+                        {{#if youtube}}
+                            <a class="gh-author-social-link" href="{{social_url type="youtube"}}" target="_blank" rel="noopener">{{> "icons/youtube"}}</a>
+                        {{/if}}
+                        {{#if instagram}}
+                            <a class="gh-author-social-link" href="{{social_url type="instagram"}}" target="_blank" rel="noopener">{{> "icons/instagram"}}</a>
+                        {{/if}}
+                        {{#if website}}
+                            <a class="gh-author-social-link" href="{{website}}" target="_blank" rel="noopener">🌐</a>
+                        {{/if}}
+                    </div>
+                    {{#if location}}
+                        <div class="gh-author-location">{{location}}</div>
+                    {{/if}}
+                </footer>
+            </div>
+            {{#if profile_image}}
+                <img class="gh-article-image" src="{{img_url profile_image size="s"}}" alt="{{name}}">
+            {{/if}}
+        </div>
+    </section>
+    
+    {{!-- Display posts by Raji --}}
+    <section class="gh-archive gh-inner">
+        <h2 class="gh-archive-title">Articles by Raji</h2>
+    </section>
+    
+    {{> "components/post-list" feed="archive" postFeedStyle=@custom.post_feed_style showTitle=false showSidebar=@custom.show_publication_info_sidebar}}
+
+</main>
+
