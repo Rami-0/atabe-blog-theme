@@ -352,7 +352,8 @@
 
     <script>
         (function () {
-            const API_URL = 'https://api.atabe.app/api/v1/properties/most-common/searches';
+            // Use Next.js API route as proxy to avoid exposing internal token
+            const API_URL = 'https://atabe.app/api/footer/searches';
             const isRTL = document.documentElement.dir === 'rtl' || document.documentElement.lang === 'ar';
 
             function renderLinks(container, searches) {
@@ -398,14 +399,30 @@
             const desktopContainer = document.getElementById('atabe-footer-links-desktop');
 
             if (mobileContainer || desktopContainer) {
-                fetch(API_URL)
-                    .then(response => response.json())
+                fetch(API_URL, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
                     .then(data => {
-                        if (mobileContainer) renderLinks(mobileContainer, data);
-                        if (desktopContainer) renderLinks(desktopContainer, data);
+                        // Check if data is an error object
+                        if (data && !data.error && Array.isArray(data)) {
+                            if (mobileContainer) renderLinks(mobileContainer, data);
+                            if (desktopContainer) renderLinks(desktopContainer, data);
+                        } else {
+                            console.warn('Footer API returned invalid data:', data);
+                        }
                     })
                     .catch(error => {
                         console.error('Error fetching footer links:', error);
+                        // Silently fail - footer will just not show links
                     });
             }
         })();
